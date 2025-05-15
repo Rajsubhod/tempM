@@ -10,13 +10,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AppointmentSystemImpl implements AppointmentSystem {
-    List<Patient> patients = new ArrayList<>();
-    List<Doctor> doctors = new ArrayList<>();
-    List<Appointment> appointments = new ArrayList<>();
+    private List<Patient> patients = new ArrayList<>();
+    private List<Doctor> doctors = new ArrayList<>();
+    private List<Appointment> appointments = new ArrayList<>();
 
-    private static AppointmentSystem INSTANCE;
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
 
-    public static AppointmentSystem getInstance() {
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    private static AppointmentSystemImpl INSTANCE;
+
+    public static AppointmentSystemImpl getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new AppointmentSystemImpl();
         }
@@ -31,7 +43,7 @@ public class AppointmentSystemImpl implements AppointmentSystem {
         doctors.add(doctor);
     }
 
-    public void bookAppointment(Patient patient) {
+    public Appointment bookAppointment(Patient patient) {
         try {
             if (patient == null) {
                 throw new InvalidAppointmentException("Invalid patient");
@@ -41,13 +53,14 @@ public class AppointmentSystemImpl implements AppointmentSystem {
                     Appointment appointment = new Appointment(patient, doctor);
                     appointments.add(appointment);
                     System.out.println("Appointment booked successfully.");
-                    return;
+                    return appointment;
                 }
             }
             throw new InvalidAppointmentException("No available doctors");
         } catch (InvalidAppointmentException e) {
             System.err.println(e);
         }
+        return null;
     }
 
     public void completeAppointment(int index) {

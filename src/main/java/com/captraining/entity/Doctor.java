@@ -2,14 +2,13 @@ package com.captraining.entity;
 
 public class Doctor extends User{
 
-    private boolean available;
+    private boolean available = true;
 
     public Doctor() {
     }
 
-    public Doctor(int id, String name, boolean available) {
+    public Doctor(String id, String name) {
         super(id, name);
-        this.available = available;
     }
 
     public boolean isAvailable() {

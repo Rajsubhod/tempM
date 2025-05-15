@@ -19,7 +19,7 @@ public class Admin extends User {
 
         if(security != null && security.role().equals("Admin")){
             for (Doctor doctor : doctors) {
-                if (doctor.id == Integer.parseInt(doctorId)) {
+                if (doctor.id.equals(doctorId)) {
                     doctors.remove(doctor);
                     System.out.println("Doctor with ID " + doctorId + " has been removed.");
                     return;

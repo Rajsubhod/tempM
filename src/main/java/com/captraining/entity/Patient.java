@@ -2,7 +2,7 @@ package com.captraining.entity;
 
 public class Patient extends User{
 
-    public Patient(int id, String name) {
+    public Patient(String id, String name) {
         super(id, name);
     }
 
